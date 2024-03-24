@@ -1,0 +1,41 @@
+21:48:04 **** Incremental Build of configuration Debug for project pot ****
+make -j16 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F446xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:116:11: warning: implicit declaration of function 'sprintf' [-Wimplicit-function-declaration]
+  116 |           sprintf(str, "raw data : %lu, new data: %.2f V\n", pot_data, map_data);
+      |           ^~~~~~~
+../Core/Src/main.c:21:1: note: include '<stdio.h>' or provide a declaration of 'sprintf'
+   20 | #include "main.h"
+  +++ |+#include <stdio.h>
+   21 | 
+../Core/Src/main.c:116:11: warning: incompatible implicit declaration of built-in function 'sprintf' [-Wbuiltin-declaration-mismatch]
+  116 |           sprintf(str, "raw data : %lu, new data: %.2f V\n", pot_data, map_data);
+      |           ^~~~~~~
+../Core/Src/main.c:116:11: note: include '<stdio.h>' or provide a declaration of 'sprintf'
+../Core/Src/main.c:118:38: warning: pointer targets in passing argument 2 of 'HAL_UART_Transmit' differ in signedness [-Wpointer-sign]
+  118 |           HAL_UART_Transmit(&huart2, str, sizeof(str), 100);
+      |                                      ^~~
+      |                                      |
+      |                                      char *
+In file included from ../Core/Inc/stm32f4xx_hal_conf.h:411,
+                 from ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h:29,
+                 from ../Core/Inc/main.h:30,
+                 from ../Core/Src/main.c:20:
+../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h:745:79: note: expected 'const uint8_t *' {aka 'const unsigned char *'} but argument is of type 'char *'
+  745 | HAL_StatusTypeDef HAL_UART_Transmit(UART_HandleTypeDef *huart, const uint8_t *pData, uint16_t Size, uint32_t Timeout);
+      |                                                                ~~~~~~~~~~~~~~~^~~~~
+arm-none-eabi-gcc -o "pot.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\merta\STM32CubeIDE\workspace_1.14.1\destek01\pot\STM32F446RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="pot.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -u _printf_float -u _scanf_float -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: pot.elf
+ 
+arm-none-eabi-size  pot.elf 
+arm-none-eabi-objdump -h -S pot.elf  > "pot.list"
+   text	   data	    bss	    dec	    hex	filename
+  34268	    476	   2092	  36836	   8fe4	pot.elf
+Finished building: default.size.stdout
+ 
+Finished building: pot.list
+ 
+
+21:48:07 Build Finished. 0 errors, 3 warnings. (took 2s.758ms)
+

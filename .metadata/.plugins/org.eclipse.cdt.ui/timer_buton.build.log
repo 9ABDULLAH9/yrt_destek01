@@ -1,0 +1,21 @@
+12:22:20 **** Incremental Build of configuration Debug for project timer_buton ****
+make -j16 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F446xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'HAL_TIM_PeriodElapsedCallback':
+../Core/Src/main.c:70:20: warning: suggest parentheses around assignment used as truth value [-Wparentheses]
+   70 |                 if(cnt = 9999)
+      |                    ^~~
+arm-none-eabi-gcc -o "timer_buton.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\merta\STM32CubeIDE\workspace_1.14.1\destek01\timer_buton\STM32F446RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="timer_buton.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: timer_buton.elf
+ 
+arm-none-eabi-size  timer_buton.elf 
+arm-none-eabi-objdump -h -S timer_buton.elf  > "timer_buton.list"
+   text	   data	    bss	    dec	    hex	filename
+  11384	     12	   1724	  13120	   3340	timer_buton.elf
+Finished building: default.size.stdout
+ 
+Finished building: timer_buton.list
+ 
+
+12:22:21 Build Finished. 0 errors, 1 warnings. (took 726ms)
+
