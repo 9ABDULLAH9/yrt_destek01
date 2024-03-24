@@ -1418,3 +1418,15 @@ Command-line arguments:  -os win32 -ws win32 -arch x86_64
 
 !ENTRY org.eclipse.cdt.core 1 0 2024-03-24 12:30:29.799
 !MESSAGE Indexed 'pwm' (22 sources, 82 headers) in 1.28 sec: 5,030 declarations; 26,529 references; 0 unresolved inclusions; 1 syntax errors; 2 unresolved names (0.0063%)
+
+!ENTRY com.st.stm32cube.ide.mcu.debug 4 0 2024-03-24 13:52:52.781
+!MESSAGE Error - No active DSF-Session. tmpSessionId = 12 (contextManager row 121)
+
+!ENTRY com.st.stm32cube.ide.mcu.debug 4 0 2024-03-24 13:52:52.781
+!MESSAGE Existing sessions are:
+
+!ENTRY com.st.stm32cube.ide.mcu.debug 4 0 2024-03-24 13:52:52.782
+!MESSAGE Error - No active DSF-Session. tmpSessionId = 12 (contextManager row 121)
+
+!ENTRY com.st.stm32cube.ide.mcu.debug 4 0 2024-03-24 13:52:52.782
+!MESSAGE Existing sessions are:
