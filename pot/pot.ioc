@@ -1,12 +1,12 @@
 #MicroXplorer Configuration settings - do not modify
 ADC1.Channel-0\#ChannelRegularConversion=ADC_CHANNEL_1
-ADC1.ContinuousConvMode=DISABLE
+ADC1.ContinuousConvMode=ENABLE
 ADC1.IPParameters=Rank-0\#ChannelRegularConversion,master,Channel-0\#ChannelRegularConversion,SamplingTime-0\#ChannelRegularConversion,NbrOfConversionFlag,ScanConvMode,ContinuousConvMode,NbrOfConversion
 ADC1.NbrOfConversion=1
 ADC1.NbrOfConversionFlag=1
 ADC1.Rank-0\#ChannelRegularConversion=1
 ADC1.SamplingTime-0\#ChannelRegularConversion=ADC_SAMPLETIME_3CYCLES
-ADC1.ScanConvMode=DISABLE
+ADC1.ScanConvMode=ENABLE
 ADC1.master=1
 CAD.formats=
 CAD.pinconfig=
@@ -191,4 +191,3 @@ VP_SYS_VS_Systick.Mode=SysTick
 VP_SYS_VS_Systick.Signal=SYS_VS_Systick
 board=NUCLEO-F446RE
 boardIOC=true
-isbadioc=false
