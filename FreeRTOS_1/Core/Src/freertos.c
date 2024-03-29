@@ -25,7 +25,10 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-
+#include <stdio.h>
+#include "adc.h"
+#include "usart.h"
+#include "gpio.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -85,7 +88,6 @@ void vApplicationGetIdleTaskMemory( StaticTask_t **ppxIdleTaskTCBBuffer, StackTy
   */
 void MX_FREERTOS_Init(void) {
   /* USER CODE BEGIN Init */
-
   /* USER CODE END Init */
 
   /* USER CODE BEGIN RTOS_MUTEX */
@@ -106,7 +108,7 @@ void MX_FREERTOS_Init(void) {
 
   /* Create the thread(s) */
   /* definition and creation of ledTask1 */
-  osThreadDef(ledTask1, StartDefaultTask, osPriorityNormal, 0, 128);
+  osThreadDef(ledTask1, StartDefaultTask, osPriorityIdle, 0, 128);
   ledTask1Handle = osThreadCreate(osThread(ledTask1), NULL);
 
   /* definition and creation of uartTask */
@@ -136,7 +138,10 @@ void StartDefaultTask(void const * argument)
   /* Infinite loop */
   for(;;)
   {
-    osDelay(1);
+	uint8_t str[] = "led status change\n";
+	HAL_UART_Transmit(&huart2, str,  strlen(str), 100);
+	HAL_GPIO_TogglePin(LD2_GPIO_Port, LD2_Pin);
+    osDelay(10);
   }
   /* USER CODE END StartDefaultTask */
 }
@@ -154,7 +159,9 @@ void StartTask02(void const * argument)
   /* Infinite loop */
   for(;;)
   {
-    osDelay(1);
+	uint8_t str[] = "system start\n";
+	HAL_UART_Transmit(&huart2, str,  strlen(str), 100);
+    osDelay(5000);
   }
   /* USER CODE END StartTask02 */
 }
@@ -172,7 +179,19 @@ void StartTask03(void const * argument)
   /* Infinite loop */
   for(;;)
   {
-    osDelay(1);
+	uint8_t str[] = "pot data :";
+	uint32_t pot_data;
+
+
+	HAL_ADC_Start(&hadc1);
+	HAL_ADC_PollForConversion(&hadc1, 100);
+	pot_data = HAL_ADC_GetValue(&hadc1);
+	HAL_ADC_Stop(&hadc1);
+
+	sprintf(str, "pot data :%lu\n", pot_data);
+
+	HAL_UART_Transmit(&huart2, str, strlen(str), 100);
+    osDelay(10);
   }
   /* USER CODE END StartTask03 */
 }
